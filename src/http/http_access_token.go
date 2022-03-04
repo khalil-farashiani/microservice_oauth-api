@@ -20,9 +20,9 @@ func NewHandler(service access_token.Service) AccessTokenHandler {
 	}
 }
 
-func (h *accessTokenHandler) GetById(c *gin.Context) {
+func (handler *accessTokenHandler) GetById(c *gin.Context) {
 	accessTokenId := c.Param("access_token_id")
-	accessToken, err := h.service.GetByID(accessTokenId)
+	accessToken, err := handler.service.GetByID(accessTokenId)
 
 	if err != nil {
 		c.JSON(err.Status, err)

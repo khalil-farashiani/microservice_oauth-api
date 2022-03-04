@@ -16,6 +16,6 @@ type DbRepository interface {
 type dbRepository struct {
 }
 
-func (r *dbRepository) GetByID(string) (*access_token.AccessToken, *errors.RestErr) {
+func (r *dbRepository) GetByID(id string) (*access_token.AccessToken, *errors.RestErr) {
 	return nil, errors.NewInternalServerError("database connection not implemented")
 }
