@@ -14,7 +14,7 @@ var (
 
 func StartApplication() {
 	session, dbErr := cassandra.GetSession()
-	if err != nil {
+	if dbErr != nil {
 		panic(dbErr)
 	}
 	session.Close()
