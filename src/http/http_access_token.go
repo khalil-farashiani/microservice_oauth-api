@@ -3,11 +3,14 @@ package http
 import (
 	"github.com/gin-gonic/gin"
 	"github.com/khalil-farashiani/microservice_oauth-api/src/domain/access_token"
+	"github.com/khalil-farashiani/microservice_oauth-api/src/utils/errors"
 	"net/http"
 )
 
 type AccessTokenHandler interface {
 	GetById(c *gin.Context)
+	Create(c *gin.Context)
+	UpdateExpiresTime(c *gin.Context)
 }
 
 type accessTokenHandler struct {
@@ -30,4 +33,17 @@ func (handler *accessTokenHandler) GetById(c *gin.Context) {
 	}
 	c.JSON(http.StatusOK, accessToken)
 
+}
+func (handler *accessTokenHandler) Create(c *gin.Context) {
+
+}
+
+func (handler *accessTokenHandler) UpdateExpiresTime(c *gin.Context) {
+	var at access_token.AccessToken
+	if err := c.ShouldBindJSON(&at); err != nil {
+		restErr := errors.NewInternalServerError("invalid json body")
+		c.JSON(restErr.Status, restErr)
+		return
+	}
+	c.JSON(http.StatusCreated, at)
 }
