@@ -8,9 +8,9 @@ import (
 )
 
 type AccessTokenHandler interface {
-	GetById(c *gin.Context)
-	Create(c *gin.Context)
-	UpdateExpiresTime(c *gin.Context)
+	GetById(*gin.Context)
+	Create(*gin.Context)
+	UpdateExpiresTime(*gin.Context)
 }
 
 type accessTokenHandler struct {
